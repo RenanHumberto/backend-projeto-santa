@@ -17,6 +17,7 @@ const CadastroSchema = new mongoose.Schema({
     }
 });
 
+
 const Cadastro = mongoose.model("Cadastro", CadastroSchema);
 module.exports = Cadastro; //para que possamos utilizar em outras partes do codigo, pastas etc
 

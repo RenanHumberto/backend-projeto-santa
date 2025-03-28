@@ -1,7 +1,17 @@
 const Cadastro = require('../models/cadastro.Model');
-
-const create = (body) => Cadastro.create(body);
+//o find, create, findbyid são metodos do moongose
+const createService = (body) => Cadastro.create(body);
+//recebe os daodos do body e envia eles
+const findAllService = () => Cadastro.find();
+const findByIdService = (id) => Cadastro.findById(id);
+const updateService = (id, updateObject) => Cadastro.findOneAndUpdate(
+    {_id: id},
+    updateObject,
+    {new: true});
 
 module.exports = {
-    create,
+    createService,
+    findAllService,
+    findByIdService,
+    updateService
 };
