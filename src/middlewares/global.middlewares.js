@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const cadastroService = require("../services/cadastro.service");
+import mongoose from "mongoose";
+import cadastroService from "../services/cadastro.service.js";
 
-const validId = (req, res, next) =>{
+export const validId = (req, res, next) =>{
     const id = req.params.id;
     
     if (!mongoose.Types.ObjectId.isValid(id)) { //verifica se o id é valido
@@ -11,7 +11,7 @@ const validId = (req, res, next) =>{
     next();
 }
 
-const validCadastro = async(req, res, next) =>{
+ export const validCadastro = async(req, res, next) =>{
     const id = req.params.id;
 
     const cadastro = await cadastroService.findByIdService(id);
@@ -20,7 +20,10 @@ const validCadastro = async(req, res, next) =>{
         return res.status(400).send({ message: "Erro ao encontrar cadastro 😔" });
     };
 
+    req.id = id;
+    req.cadastro = cadastro;
+
     next();
 }
 
-module.exports = {validId, validCadastro}
+export default  {validId, validCadastro}

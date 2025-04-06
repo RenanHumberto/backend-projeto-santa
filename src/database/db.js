@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const connectDatabase = () => {
     console.log("Espere a conexão com o banco de dados, por favor...");
@@ -10,10 +10,11 @@ const connectDatabase = () => {
         .catch((error) => console.error("❌ Erro ao conectar ao MongoDB:", error));
 };
 
-module.exports = connectDatabase;
+export default connectDatabase;
+// module.exports = connectDatabase;
 //versão chatgpt
 
-
+//5vSJTTFozXm0w86L
 
 
 // const mongoose = require('mongoose');

@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+import bcrypt from "bcrypt"
 
 //nova "tabela" 
 const CadastroSchema = new mongoose.Schema({
@@ -13,13 +14,18 @@ const CadastroSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        select: false
     }
 });
 
+CadastroSchema.pre("save", async function (next){
+    this.password = await bcrypt.hashSync(this.password, 10);
+    next();
+})
 
 const Cadastro = mongoose.model("Cadastro", CadastroSchema);
-module.exports = Cadastro; //para que possamos utilizar em outras partes do codigo, pastas etc
+export default  Cadastro; //para que possamos utilizar em outras partes do codigo, pastas etc
 
 // 1️⃣ Importamos o Mongoose.
 // 2️⃣ Criamos um Schema (CadastroSchema) que define a estrutura dos dados.
