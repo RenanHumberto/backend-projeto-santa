@@ -1,8 +1,9 @@
 import express from 'express';
-const route = express.Router();
-
 import cadastroController from '../controllers/cadastro.controller.js';
 import {validId, validCadastro} from '../middlewares/global.middlewares.js';
+const route = express.Router();
+
+
 
 route.post("/", cadastroController.create);
 route.get("/", cadastroController.findAll);

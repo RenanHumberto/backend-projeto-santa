@@ -22,29 +22,10 @@ const CadastroSchema = new mongoose.Schema({
 CadastroSchema.pre("save", async function (next){
     this.password = await bcrypt.hashSync(this.password, 10);
     next();
-})
+}) //crypotagrafando a senha, antes de salvar no banco de dados
 
 const Cadastro = mongoose.model("Cadastro", CadastroSchema);
-export default  Cadastro; //para que possamos utilizar em outras partes do codigo, pastas etc
-
-// 1️⃣ Importamos o Mongoose.
-// 2️⃣ Criamos um Schema (CadastroSchema) que define a estrutura dos dados.
-// 3️⃣ Definimos os campos nome, email e senha com regras de validação.
-// 4️⃣ Criamos um modelo (Cadastro) baseado nesse Schema.
-// 5️⃣ Exportamos o modelo para utilizá-lo em outras partes da aplicação.
-
-// Agora, podemos usar esse modelo para criar, ler, atualizar e deletar (CRUD) usuários no MongoDB!
-
-
-
-
-// tabela antiga que eu tinha feito
-// const User = mongoose.model('User', {
-//     nome: String,
-//     email: String,
-//     senha: String
-// });
-
+export default  Cadastro; 
 
 
 
